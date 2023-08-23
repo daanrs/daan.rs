@@ -37,6 +37,27 @@
           autoWire = ["packages" "checks"];
         };
 
+        packages.pages = pkgs.stdenv.mkDerivation {
+          name = "pages";
+
+          LOCALE_ARCHIVE =
+            pkgs.lib.optionalString
+            (pkgs.buildPlatform.libc == "glibc")
+            "${pkgs.glibcLocales}/lib/locale/locale-archive";
+
+          src = ./site;
+
+          buildPhase = ''
+            export LANG="en_US.UTF-8";
+            ${self'.packages.daan-rs}/bin/daan-rs build
+          '';
+
+          installPhase = ''
+            mkdir -p $out
+            cp -r _site $out
+          '';
+        };
+
         treefmt.config = {
           projectRootFile = "flake.nix";
 
