@@ -24,3 +24,5 @@ cabal.project.local~
 
 
 .direnv
+_cache
+_site
