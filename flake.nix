@@ -37,6 +37,7 @@
           autoWire = ["packages" "checks"];
         };
 
+
         treefmt.config = {
           projectRootFile = "flake.nix";
 
