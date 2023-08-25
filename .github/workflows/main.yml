@@ -19,11 +19,6 @@ jobs:
       #   github_access_token: ${{ secrets.GITHUB_TOKEN }}
     - name: build site
       run: nix build .#pages
-    - name: Fix permissions
-      run: |
-        chmod -c -R +rX "./result" | while read line; do
-          echo "::warning title=Invalid file permissions automatically fixed::$line"
-        done
     - name: Upload Pages artifact
       uses: actions/upload-pages-artifact@v2
       with:
