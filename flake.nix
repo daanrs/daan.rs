@@ -45,7 +45,7 @@
             (pkgs.buildPlatform.libc == "glibc")
             "${pkgs.glibcLocales}/lib/locale/locale-archive";
 
-          src = ./site;
+          src = ./.;
 
           buildPhase = ''
             export LANG="en_US.UTF-8";
